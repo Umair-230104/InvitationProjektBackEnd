@@ -11,3 +11,6 @@ Content-Type: application/json
   "people": 1
 }
 
+###
+DELETE {{URL}}/3
+

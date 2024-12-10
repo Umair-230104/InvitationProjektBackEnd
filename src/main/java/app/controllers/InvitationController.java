@@ -61,4 +61,28 @@ public class InvitationController
             throw new ApiException(400, e.getMessage());
         }
     }
+
+    public void deleteInvitation(Context ctx)
+    {
+        try
+        {
+            // Extract the id from the path parameter
+            String id = ctx.pathParam("id");
+
+            // Query the database to delete the invitation
+            invitationDAO.delete(Long.parseLong(id));
+
+            // Set response status to 204 No Content
+            ctx.status(204).result("Invitation deleted");
+        } catch (Exception e)
+        {
+            // Log an error if there is an error
+            log.error("Error deleting invitation: {}", e.getMessage());
+
+            // Throw our own exception with status 404 if the resource is not found or 400 for other issues
+            throw new ApiException(404, "Invitation not found or could not be deleted");
+        }
+    }
+
+
 }

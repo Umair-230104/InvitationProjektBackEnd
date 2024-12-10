@@ -16,12 +16,11 @@ public class InvitationsRoutes
     private final InvitationDAO invitationDAO = new InvitationDAO(emf);
     private final InvitationController invitationController = new InvitationController(invitationDAO);
 
-    public EndpointGroup getInvitationRoutes()
-    {
-        return () ->
-        {
+    public EndpointGroup getInvitationRoutes() {
+        return () -> {
             get("/", invitationController::getAllInvitations);
             post("/", invitationController::createInvitation);
+            delete("/{id}", invitationController::deleteInvitation); // Fixed the quote issue
         };
     }
 

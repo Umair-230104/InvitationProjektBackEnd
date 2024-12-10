@@ -32,4 +32,25 @@ public class InvitationDAO
             em.getTransaction().commit();
         }
     }
+
+    public void delete(Long id) throws Exception {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Invitation invitation = em.find(Invitation.class, id);
+            if (invitation != null) {
+                em.remove(invitation);
+            } else {
+                throw new Exception("Invitation not found");
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
+
+
 }
