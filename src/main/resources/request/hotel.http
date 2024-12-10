@@ -2,11 +2,12 @@
 GET {{URL}}
 
 ###
-POST {{URL}}
+POST http://localhost:7007/api/v1/invitations
 Content-Type: application/json
 
 {
   "name": "Hotel 1",
   "phoneNumber": "4444",
-  "people": "1"
+  "people": 1
 }
+

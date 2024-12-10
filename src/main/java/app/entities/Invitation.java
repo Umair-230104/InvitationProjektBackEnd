@@ -5,14 +5,16 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "items")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Invitation
-{
+public class Invitation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,11 +28,13 @@ public class Invitation
     @Column(nullable = false)
     private int people;
 
-    public Invitation(InvitationDTO invitationDTO)
-    {
+    @Column(updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    public Invitation(InvitationDTO invitationDTO) {
         this.name = invitationDTO.getName();
         this.phoneNumber = invitationDTO.getPhoneNumber();
         this.people = invitationDTO.getPeople();
     }
-
 }
