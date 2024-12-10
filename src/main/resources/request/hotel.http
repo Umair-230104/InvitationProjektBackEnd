@@ -1,2 +1,12 @@
 ### Get all hotels
 GET {{URL}}
+
+###
+POST {{URL}}
+Content-Type: application/json
+
+{
+  "name": "Hotel 1",
+  "phoneNumber": "4444",
+  "people": "1"
+}
